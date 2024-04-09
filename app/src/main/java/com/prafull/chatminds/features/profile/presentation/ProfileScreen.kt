@@ -1,4 +1,4 @@
-package com.prafull.chatminds.profile.presentation
+package com.prafull.chatminds.features.profile.presentation
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

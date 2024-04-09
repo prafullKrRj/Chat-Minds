@@ -1,4 +1,4 @@
-package com.prafull.chatminds.history.presentation
+package com.prafull.chatminds.features.history.presentation
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

@@ -1,16 +1,5 @@
 package com.prafull.chatminds.ui
 
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.Icon
-import androidx.compose.material.icons.Icons
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
@@ -19,9 +8,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.AccountCircle
@@ -29,28 +20,45 @@ import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.prafull.chatminds.ui.theme.ChatMindsTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ChatMindsTheme {
+            ChatMindsTheme(darkTheme = true) {
                 val navController = rememberNavController()
                 var exit by remember {
                     mutableStateOf(false)
+                }
+                var currentScreen by rememberSaveable { mutableStateOf(Screens.NewChat.name) }
+                LaunchedEffect(Unit) {
+                    navController.currentBackStackEntryFlow.collectLatest {
+                        currentScreen = navController.currentDestination?.route ?: Screens.NewChat.name
+                    }
                 }
                 BackHandler {
                     exit = true
@@ -67,7 +75,11 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     bottomBar = {
-                        BottomNavigationBar(navController = navController)
+                        if (currentScreen != Screens.Chat.name) {
+                            BottomNavigationBar(navController = navController) {
+                                currentScreen = it
+                            }
+                        }
                     }
                 ) { paddingValues ->
                     Column(
@@ -119,7 +131,7 @@ fun ExitDialog(exit: (Boolean) -> Unit){
     }
 }
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun BottomNavigationBar(navController: NavController, changeScreen: (String) -> Unit = {}) {
     var selectedItem by remember { mutableIntStateOf(0) }
     val items = listOf(
         Screens.NewChat.name to Pair(Icons.Outlined.Home, Icons.Filled.Home),
@@ -145,6 +157,7 @@ fun BottomNavigationBar(navController: NavController) {
                     selectedItem = index
                     navController.popBackStack()
                     navController.navigate(item.first)
+                    changeScreen(item.first)
                 }
             )
         }
@@ -155,7 +168,8 @@ enum class Screens {
     History,
     Profile,
     Models,
-    Settings
+    Settings,
+    Chat
 }
 fun NavController.goBackStack() {
     if (currentBackStackEntry?.lifecycle?.currentState == Lifecycle.State.RESUMED) {
