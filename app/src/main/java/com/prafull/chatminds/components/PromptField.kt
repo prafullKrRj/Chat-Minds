@@ -37,6 +37,7 @@ fun PromptField(modifier: Modifier = Modifier, sendPrompt: (String) -> Unit = {}
                 IconButton(onClick = {
                     if (text.isNotEmpty()) {
                         sendPrompt(text)
+                        text = ""
                     }
                 }) {
                     Icon(imageVector = Icons.Outlined.Send, contentDescription = "Send Prompt")

@@ -74,7 +74,7 @@ dependencies {
     // Dagger HIlt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation(libs.generativeai)
+     implementation(libs.generativeai)
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
@@ -87,4 +87,7 @@ dependencies {
     // define dependencies without versions
     implementation ("com.aallam.openai:openai-client")
     runtimeOnly ("io.ktor:ktor-client-okhttp")*/
+}
+kapt {
+    correctErrorTypes = true
 }

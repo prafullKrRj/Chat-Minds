@@ -87,7 +87,9 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(paddingValues)
                     ) {
-                        NavGraph(navController = navController)
+                        NavGraph(navController = navController) {
+                            currentScreen = it
+                        }
                     }
                 }
             }

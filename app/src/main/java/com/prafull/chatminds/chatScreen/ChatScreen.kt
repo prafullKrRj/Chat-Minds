@@ -12,19 +12,20 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.prafull.chatminds.components.PromptField
+import com.prafull.chatminds.features.newChat.presentation.NewChatViewModel
 import com.prafull.chatminds.ui.goBackStack
 
 
 @Composable
-fun ChatScreen(navController: NavController, model: String = "GPT-4.5") {
+fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel) {
     var alertDialogState by remember { mutableStateOf(false) }
     BackHandler {
         if (!alertDialogState) {
@@ -41,7 +42,7 @@ fun ChatScreen(navController: NavController, model: String = "GPT-4.5") {
             PromptField()
         },
         topBar = {
-            TopAppBar(navController = navController, model)
+            TopAppBar(navController = navController, newChatViewModel.model)
         }
     ) { paddingValues ->
         LazyColumn(
