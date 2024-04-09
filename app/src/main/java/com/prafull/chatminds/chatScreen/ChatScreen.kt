@@ -19,7 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
-import com.prafull.chatminds.newChat.presentation.PromptField
+import com.prafull.chatminds.components.PromptField
 import com.prafull.chatminds.ui.goBackStack
 
 
