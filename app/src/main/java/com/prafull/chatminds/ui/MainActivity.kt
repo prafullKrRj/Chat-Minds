@@ -21,6 +21,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -39,7 +40,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.prafull.chatminds.ui.theme.ChatMindsTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -50,45 +56,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ChatMindsTheme(darkTheme = true) {
-                val navController = rememberNavController()
-                var exit by remember {
-                    mutableStateOf(false)
-                }
-                var currentScreen by rememberSaveable { mutableStateOf(Screens.NewChat.name) }
-                LaunchedEffect(Unit) {
-                    navController.currentBackStackEntryFlow.collectLatest {
-                        currentScreen = navController.currentDestination?.route ?: Screens.NewChat.name
-                    }
-                }
-                BackHandler {
-                    exit = true
-                }
-                if (exit) {
-                    ExitDialog {
-                        if (it) {
+                val majorNavController = rememberNavController()
+                NavHost(navController = majorNavController, startDestination = "AUTH") {
+                    authScreen(majorNavController)
+                    composable("MAIN") {
+                        MainScreen {
                             finish()
-                        } else {
-                            exit = false
-                        }
-                    }
-                }
-
-                Scaffold(
-                    bottomBar = {
-                        if (currentScreen != Screens.Chat.name) {
-                            BottomNavigationBar(navController = navController) {
-                                currentScreen = it
-                            }
-                        }
-                    }
-                ) { paddingValues ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(paddingValues)
-                    ) {
-                        NavGraph(navController = navController) {
-                            currentScreen = it
                         }
                     }
                 }
@@ -97,6 +70,65 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+fun NavGraphBuilder.authScreen(navController: NavController) {
+    navigation(route = "AUTH", startDestination = "MAIN_AUTH") {
+        composable("MAIN_AUTH") {
+            Column {
+                Text(text = "Auth Screen")
+                Button(onClick = {
+                    navController.navigate("MAIN")
+                }) {
+                    Text(text = "Login")
+                }
+            }
+        }
+    }
+}
+@Composable
+fun MainScreen(finish: () -> Unit){
+    val navController = rememberNavController()
+    var exit by remember {
+        mutableStateOf(false)
+    }
+    var currentScreen by rememberSaveable { mutableStateOf(Screens.NewChat.name) }
+    LaunchedEffect(Unit) {
+        navController.currentBackStackEntryFlow.collectLatest {
+            currentScreen = navController.currentDestination?.route ?: Screens.NewChat.name
+        }
+    }
+    BackHandler {
+        exit = true
+    }
+    if (exit) {
+        ExitDialog {
+            if (it) {
+                finish()
+            } else {
+                exit = false
+            }
+        }
+    }
+
+    Scaffold(
+        bottomBar = {
+            if (currentScreen != Screens.Chat.name) {
+                BottomNavigationBar(navController = navController) {
+                    currentScreen = it
+                }
+            }
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            Main(navController = navController) {
+                currentScreen = it
+            }
+        }
+    }
+}
 @Composable
 fun ExitDialog(exit: (Boolean) -> Unit){
     var openDialog by remember { mutableStateOf(true) }
