@@ -72,9 +72,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Dagger HIlt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-     implementation(libs.generativeai)
+    implementation (libs.hilt.android.v2511)
+    kapt (libs.hilt.compiler.v2511)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 

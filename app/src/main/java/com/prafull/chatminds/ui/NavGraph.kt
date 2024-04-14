@@ -1,6 +1,7 @@
 package com.prafull.chatminds.ui
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -19,9 +20,7 @@ import com.prafull.chatminds.features.settings.presentation.SettingsScreen
 
 @Composable
 fun Main(navController: NavHostController, updateScreen: (String) -> Unit) {
-    val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
-        "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
-    }
+
     NavHost(navController = navController, startDestination = Screens.NewChat.name) {
         composable(Screens.NewChat.name) {
             updateScreen(Screens.NewChat.name)
@@ -44,8 +43,8 @@ fun Main(navController: NavHostController, updateScreen: (String) -> Unit) {
             SettingsScreen()
         }
         composable(Screens.Chat.name + "/{model}") {
-            val model = it.arguments?.getString("model") ?: "GPT-4.5"
-            val viewModel: NewChatViewModel = viewModel(viewModelStoreOwner)
+            val model = it.arguments?.getString("model") ?: "GPT-3.5"
+            val viewModel: NewChatViewModel = hiltViewModel()
             viewModel.model = model
             updateScreen(Screens.Chat.name)
             ChatScreen(navController, viewModel)

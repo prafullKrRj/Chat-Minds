@@ -17,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.prafull.chatminds.components.PromptField
 import com.prafull.chatminds.features.newChat.presentation.NewChatViewModel
@@ -33,7 +32,7 @@ fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel)
         }
     }
     if (alertDialogState) {
-        ChatExitDialog(navController, alertDialogState) {
+        ChatExitDialog(navController) {
             alertDialogState = it
         }
     }
@@ -75,14 +74,14 @@ fun TopAppBar(navController: NavController, model: String) {
         }
     )
     if (alertDialogState) {
-        ChatExitDialog(navController, alertDialogState) {
+        ChatExitDialog(navController) {
             alertDialogState = it
         }
     }
 }
 
 @Composable
-fun ChatExitDialog(navController: NavController, alertDialogState: Boolean, onDismissRequest: (Boolean) -> Unit) {
+fun ChatExitDialog(navController: NavController, onDismissRequest: (Boolean) -> Unit) {
     AlertDialog(
         onDismissRequest = { onDismissRequest(false) },
         title = {
