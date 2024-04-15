@@ -37,7 +37,7 @@ fun NewChatScreen(navController: NavController) {
         mutableStateOf(false)
     }
     var selectedModel by rememberSaveable {
-        mutableStateOf("GPT-4.5")
+        mutableStateOf("GPT-3.5")
     }
     LazyColumn(
         modifier = Modifier

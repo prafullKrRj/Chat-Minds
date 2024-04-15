@@ -43,9 +43,7 @@ fun Main(navController: NavHostController, updateScreen: (String) -> Unit) {
             SettingsScreen()
         }
         composable(Screens.Chat.name + "/{model}") {
-            val model = it.arguments?.getString("model") ?: "GPT-3.5"
             val viewModel: NewChatViewModel = hiltViewModel()
-            viewModel.model = model
             updateScreen(Screens.Chat.name)
             ChatScreen(navController, viewModel)
         }
