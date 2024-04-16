@@ -1,4 +1,4 @@
-package com.prafull.chatminds.features.onBoardAuth.ui
+package com.prafull.chatminds.features.subscriptions.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController

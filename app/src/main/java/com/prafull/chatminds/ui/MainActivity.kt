@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.prafull.chatminds.features.onBoardAuth.ui.AuthScreen
+import com.prafull.chatminds.features.subscriptions.ui.SubscriptionScreen
 import com.prafull.chatminds.ui.theme.ChatMindsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,12 +36,12 @@ class MainActivity : ComponentActivity() {
 }
 
 fun NavGraphBuilder.authScreen(navController: NavController) {
-    navigation(route = MajorScreens.Auth.name, startDestination = "MAIN_AUTH") {
+    navigation(route = MajorScreens.Auth.name, startDestination = Auth.Login.name) {
         composable(Auth.Login.name) {
             AuthScreen(navController)
         }
         composable(Auth.Subscriptions.name) {
-
+            SubscriptionScreen(navController)
         }
     }
 }
