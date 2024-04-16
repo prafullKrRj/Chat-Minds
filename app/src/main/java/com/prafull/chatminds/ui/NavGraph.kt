@@ -42,7 +42,7 @@ fun Main(navController: NavHostController, updateScreen: (String) -> Unit) {
             updateScreen(Screens.Settings.name)
             SettingsScreen()
         }
-        composable(Screens.Chat.name + "/{model}") {
+        composable(Screens.Chat.name + "/{model}" + "/{prompt}") {
             val viewModel: NewChatViewModel = hiltViewModel()
             updateScreen(Screens.Chat.name)
             ChatScreen(navController, viewModel)

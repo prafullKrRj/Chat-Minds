@@ -11,12 +11,8 @@ data class Chat(
 data class ChatMessage(
     val role: Role = Role.USER,
     val message: String = "",
-    val success: Success = Success.SUCCESS
+    val success: Boolean = true
 )
-enum class Success {
-    SUCCESS,
-    FAILURE
-}
 enum class Role {
     USER,
     BOT

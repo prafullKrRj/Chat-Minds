@@ -30,12 +30,15 @@ class NewChatViewModel @Inject constructor(
         model = model
     ))
     val chat = _chat.asStateFlow()
-    private val _isLoading = MutableStateFlow<Boolean>(false)
+
+    private var lastUserPrompt by mutableStateOf("")
+    private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
     init {
-        sendMessage("Hello")
+        sendMessage(savedStateHandle.get<String>("prompt") ?: "Hey")
     }
     fun sendMessage(message: String) {
+        lastUserPrompt = message
         viewModelScope.launch {
             _chat.update {
                 it.copy(
@@ -59,7 +62,7 @@ class NewChatViewModel @Inject constructor(
                         _chat.update {
                             it.copy(
                                 chat = it.chat + ChatMessage(
-                                    message = "Error: ${it}",
+                                    message = "Error: $it",
                                 )
                             )
                         }
@@ -73,6 +76,9 @@ class NewChatViewModel @Inject constructor(
                 }
             }
         }
+    }
+    fun retry() {
+        sendMessage(lastUserPrompt)
     }
 }
 

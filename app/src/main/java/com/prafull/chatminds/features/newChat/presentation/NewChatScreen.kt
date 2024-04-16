@@ -39,6 +39,9 @@ fun NewChatScreen(navController: NavController) {
     var selectedModel by rememberSaveable {
         mutableStateOf("GPT-3.5")
     }
+    var prompt by rememberSaveable {
+        mutableStateOf("")
+    }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -55,6 +58,7 @@ fun NewChatScreen(navController: NavController) {
         item {
             PromptField {
                 selectModel = true
+                prompt = it
             }
         }
     }
@@ -96,7 +100,7 @@ fun NewChatScreen(navController: NavController) {
                 TextButton(
                     onClick = {
                         selectModel = false
-                        navController.navigate(Screens.Chat.name + "/$selectedModel")
+                        navController.navigate(Screens.Chat.name + "/$selectedModel" + "/$prompt")
                     }
                 ) {
                     Text(text = "Confirm")
