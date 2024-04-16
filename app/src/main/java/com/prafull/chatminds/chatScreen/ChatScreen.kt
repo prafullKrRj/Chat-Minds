@@ -1,8 +1,11 @@
 package com.prafull.chatminds.chatScreen
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -18,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.prafull.chatminds.chatScreen.components.ChatExitDialog
@@ -60,11 +64,17 @@ fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel)
         }
     ) { paddingValues ->
         LazyColumn(
-            contentPadding = paddingValues,
+            contentPadding = PaddingValues(
+                bottom = paddingValues.calculateBottomPadding(),
+                top = paddingValues.calculateTopPadding(),
+                start = 12.dp,
+                end = 12.dp
+            ),
             state = listState
         ) {
             items(chat.chat) { message ->
                 ChatMessageComposable(chatMessage = message, onRetry = newChatViewModel::retry)
+                Spacer(modifier = Modifier.height(8.dp))
             }
             item {
                 if (isLoading) {
