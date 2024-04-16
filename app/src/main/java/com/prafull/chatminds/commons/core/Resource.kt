@@ -1,4 +1,4 @@
-package com.prafull.chatminds.core
+package com.prafull.chatminds.commons.core
 
 sealed interface Resource<out T> {
     data class Success<out T>(val data: T) : Resource<T>

@@ -1,4 +1,4 @@
-package com.prafull.chatminds.features.newChat.presentation
+package com.prafull.chatminds.features.homeScreen.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,14 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.prafull.chatminds.components.PromptField
-import com.prafull.chatminds.features.newChat.presentation.components.AdWindow
-import com.prafull.chatminds.features.newChat.presentation.components.PremiumPlanComp
-import com.prafull.chatminds.features.newChat.presentation.components.PromptCategories
+import com.prafull.chatminds.commons.components.PromptField
+import com.prafull.chatminds.features.homeScreen.presentation.components.AdWindow
+import com.prafull.chatminds.features.homeScreen.presentation.components.PremiumPlanComp
+import com.prafull.chatminds.features.homeScreen.presentation.components.PromptCategories
 import com.prafull.chatminds.ui.Screens
 
 @Composable
-fun NewChatScreen(navController: NavController) {
+fun HomeScreen(navController: NavController) {
     var selectModel by remember {
         mutableStateOf(false)
     }

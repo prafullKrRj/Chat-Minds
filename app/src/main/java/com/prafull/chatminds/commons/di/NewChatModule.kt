@@ -1,13 +1,11 @@
-package com.prafull.chatminds.features.newChat.di
+package com.prafull.chatminds.commons.di
 
-import androidx.compose.runtime.sourceInformation
-import com.prafull.chatminds.features.newChat.data.NewChatRepoImpl
-import com.prafull.chatminds.features.newChat.domain.NewChatRepo
+import com.prafull.chatminds.chatScreen.data.NewChatRepoImpl
+import com.prafull.chatminds.chatScreen.domain.NewChatRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import java.net.PasswordAuthentication
 import javax.inject.Named
 import javax.inject.Singleton
 

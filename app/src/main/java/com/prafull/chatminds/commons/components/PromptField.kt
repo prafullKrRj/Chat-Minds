@@ -1,4 +1,4 @@
-package com.prafull.chatminds.components
+package com.prafull.chatminds.commons.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

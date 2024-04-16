@@ -1,4 +1,4 @@
-package com.prafull.chatminds.chatScreen
+package com.prafull.chatminds.chatScreen.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,12 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.prafull.chatminds.chatScreen.components.ChatExitDialog
-import com.prafull.chatminds.chatScreen.components.TopAppBar
+import com.prafull.chatminds.chatScreen.ui.components.ChatExitDialog
+import com.prafull.chatminds.chatScreen.ui.components.TopAppBar
 import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
-import com.prafull.chatminds.components.PromptField
-import com.prafull.chatminds.features.newChat.presentation.NewChatViewModel
+import com.prafull.chatminds.commons.components.PromptField
 
 
 @Composable

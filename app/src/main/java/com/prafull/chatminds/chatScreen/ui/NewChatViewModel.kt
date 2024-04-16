@@ -1,4 +1,4 @@
-package com.prafull.chatminds.features.newChat.presentation
+package com.prafull.chatminds.chatScreen.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,8 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.prafull.chatminds.chatScreen.model.Chat
 import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
-import com.prafull.chatminds.core.Resource
-import com.prafull.chatminds.features.newChat.domain.NewChatRepo
+import com.prafull.chatminds.commons.core.Resource
+import com.prafull.chatminds.chatScreen.domain.NewChatRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,9 +26,11 @@ class NewChatViewModel @Inject constructor(
 
     var model by mutableStateOf(savedStateHandle.get<String>("model") ?: "GPT-3.5")
 
-    private val _chat = MutableStateFlow(UiState(
+    private val _chat = MutableStateFlow(
+        UiState(
         model = model
-    ))
+    )
+    )
     val chat = _chat.asStateFlow()
 
     private var lastUserPrompt by mutableStateOf("")

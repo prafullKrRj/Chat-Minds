@@ -1,4 +1,4 @@
-package com.prafull.chatminds.features.newChat.presentation.components
+package com.prafull.chatminds.features.homeScreen.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
