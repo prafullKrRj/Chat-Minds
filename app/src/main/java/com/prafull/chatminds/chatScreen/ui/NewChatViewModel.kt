@@ -21,18 +21,17 @@ import javax.inject.Inject
 @HiltViewModel
 class NewChatViewModel @Inject constructor(
     private val newChatRepo: NewChatRepo,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ): ViewModel() {
 
     var model by mutableStateOf(savedStateHandle.get<String>("model") ?: "GPT-3.5")
 
     private val _chat = MutableStateFlow(
         UiState(
-        model = model
-    )
+            model = model
+        )
     )
     val chat = _chat.asStateFlow()
-
     private var lastUserPrompt by mutableStateOf("")
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -42,29 +41,43 @@ class NewChatViewModel @Inject constructor(
     fun sendMessage(message: String) {
         lastUserPrompt = message
         viewModelScope.launch {
+            // Add the user message to the chat
             _chat.update {
                 it.copy(
-                    chat = it.chat + ChatMessage(
-                        message = message,
-                        role = Role.USER
+                    chat = it.chat.copy(
+                        messages = it.chat.messages + ChatMessage(
+                            role = Role.USER,
+                            message = message
+                        )
                     )
                 )
             }
-            newChatRepo.getChatResponse(Chat(model = model, messages = _chat.value.chat), message).collect { response ->
+            /**
+             *      Call the getChatResponse method from the NewChatRepo
+             * */
+            newChatRepo.getChatResponse(_chat.value.chat, message).collect { response ->
                 when (response) {
                     is Resource.Success -> {
                         _chat.update {
                             it.copy(
-                                chat = it.chat + response.data
+                                chat = it.chat.copy(
+                                    messages = it.chat.messages + ChatMessage(
+                                        role = Role.BOT,
+                                        message = response.data.message
+                                    )
+                                )
                             )
                         }
-                        _isLoading.update { false }
+                        _isLoading.update { false } // Set the loading state to false
                     }
                     is Resource.Error -> {
                         _chat.update {
                             it.copy(
-                                chat = it.chat + ChatMessage(
-                                    message = "Error: $it",
+                                chat = it.chat.copy(
+                                    messages = it.chat.messages + ChatMessage(
+                                        role = Role.BOT,
+                                        message = "Sorry, I am unable to process your request at the moment."
+                                    )
                                 )
                             )
                         }
@@ -77,14 +90,15 @@ class NewChatViewModel @Inject constructor(
                     }
                 }
             }
+            newChatRepo.addToDb(chat = _chat.value.chat) // Add the chat to the database
         }
     }
     fun retry() {
-        sendMessage(lastUserPrompt)
+        sendMessage(lastUserPrompt)     // Retry the last user prompt
     }
 }
 
 data class UiState(
     val model: String = "GPT-3.5",
-    val chat: List<ChatMessage> = emptyList()
+    val chat: Chat = Chat()
 )

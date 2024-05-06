@@ -17,9 +17,11 @@ object NewChatModule {
     @Singleton
     @Named("API_KEY")
     fun providesApiKey(): String = "API_KEY"
+
     @Provides
     @Singleton
     fun providesNewChatRepo(@Named("API_KEY") apiKey: String): NewChatRepo {
         return NewChatRepoImpl(apiKey)
     }
+
 }

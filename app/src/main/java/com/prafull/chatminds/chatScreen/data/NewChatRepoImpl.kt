@@ -9,13 +9,12 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Named
 
 
 class NewChatRepoImpl @Inject constructor(
-    @Named("API_KEY") private val  apiKey: String
+    @Named("API_KEY") private val  apiKey: String,
 ): NewChatRepo {
 
     override suspend fun getChatResponse(chat: Chat, message: String): Flow<Resource<ChatMessage>> {
@@ -33,4 +32,8 @@ class NewChatRepoImpl @Inject constructor(
             awaitClose {  }
         }
     }
+    override suspend fun addToDb(chat: Chat) {
+
+    }
+
 }

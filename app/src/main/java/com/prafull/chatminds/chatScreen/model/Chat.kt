@@ -7,7 +7,9 @@ data class Chat(
     val lastModified: Long = Date().time,
     val model: String = "GPT-3.5",
     val messages: List<ChatMessage> = emptyList()
-)
+) {
+
+}
 data class ChatMessage(
     val role: Role = Role.USER,
     val message: String = "",

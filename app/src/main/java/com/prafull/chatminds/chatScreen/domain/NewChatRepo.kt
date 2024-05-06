@@ -6,6 +6,6 @@ import com.prafull.chatminds.commons.core.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 interface NewChatRepo {
-
     suspend fun getChatResponse(chat: Chat, message: String): Flow<Resource<ChatMessage>>
+    suspend fun addToDb(chat: Chat)
 }

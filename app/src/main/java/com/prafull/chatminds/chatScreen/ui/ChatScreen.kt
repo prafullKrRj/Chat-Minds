@@ -30,7 +30,6 @@ import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
 import com.prafull.chatminds.commons.components.PromptField
 
-
 @Composable
 fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel) {
     var alertDialogState by remember { mutableStateOf(false) }
@@ -45,12 +44,11 @@ fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel)
             alertDialogState = it
         }
     }
-
     val chat by newChatViewModel.chat.collectAsState() // get the chat
     val isLoading by newChatViewModel.isLoading.collectAsState() // check if the chat is loading
     val listState = rememberLazyListState()
-    LaunchedEffect(key1 = chat.chat.size) {
-        listState.animateScrollToItem(chat.chat.size - 1)
+    LaunchedEffect(key1 = chat.chat.messages.size) {
+        listState.animateScrollToItem(chat.chat.messages.size - 1)
     }
     Scaffold(
         bottomBar = {
@@ -69,9 +67,10 @@ fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel)
                 start = 12.dp,
                 end = 12.dp
             ),
-            state = listState
+            state = listState,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            items(chat.chat) { message ->
+            items(chat.chat.messages) { message ->
                 ChatMessageComposable(chatMessage = message, onRetry = newChatViewModel::retry)
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -83,7 +82,6 @@ fun ChatScreen(navController: NavController, newChatViewModel: NewChatViewModel)
         }
     }
 }
-
 @Composable
 fun ChatMessageComposable(chatMessage: ChatMessage, onRetry: () -> Unit) {
     if (chatMessage.role == Role.BOT && chatMessage.success) {

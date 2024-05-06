@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -63,6 +64,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,15 +81,22 @@ dependencies {
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    /**
-     *  Open AI
-     *  */
-    /*// import Kotlin API client BOM
-    implementation (libs.openai.client.bom.v371)
-    implementation (libs.aallam.openai.client)
-    // define dependencies without versions
-    implementation ("com.aallam.openai:openai-client")
-    runtimeOnly ("io.ktor:ktor-client-okhttp")*/
+    // room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.core.ktx.v1131)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
+    implementation(libs.androidx.room.ktx)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp)
+    implementation (libs.converter.gson)
+
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+
 }
 kapt {
     correctErrorTypes = true
