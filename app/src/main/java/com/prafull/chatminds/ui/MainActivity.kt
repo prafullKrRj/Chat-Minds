@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 if (mAuth.currentUser != null) {
                     startDestination = MajorScreens.Main.name
                 }
-                NavHost(navController = majorNavController, startDestination = MajorScreens.Auth.name) {
+                NavHost(navController = majorNavController, startDestination = startDestination) {
                     authScreen(majorNavController, mAuth)
                     composable(MajorScreens.Main.name) {
                         MainScreen {

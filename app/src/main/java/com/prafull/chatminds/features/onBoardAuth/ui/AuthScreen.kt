@@ -24,11 +24,16 @@ fun AuthScreen(
 ) {
 
     val context = LocalContext.current
+
+    // Google SignIn
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestIdToken(stringResource(R.string.web_client_id))
         .requestEmail()
         .build()
+
     val googleSignInClient = GoogleSignIn.getClient(context, gso)
+
+    // Google SignIn Launcher
     val signInLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) { result ->
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
         val exception = task.exception
@@ -51,6 +56,8 @@ fun AuthScreen(
             Toast.makeText(context, "Google SignIn Failed $exception", Toast.LENGTH_SHORT).show()
         }
     }
+
+    // Auth Screen
     Button(onClick = {
         val signInIntent = googleSignInClient.signInIntent
         signInLauncher.launch(signInIntent)

@@ -1,14 +1,28 @@
 package com.prafull.chatminds.chatScreen.model
 
+import com.prafull.chatminds.commons.data.Models
+import com.prafull.chatminds.features.history.domain.HistoryItem
+import com.prafull.chatminds.features.history.domain.HistoryModel
 import java.util.Date
 
 data class Chat(
     val createdTime: Long = Date().time,
     val lastModified: Long = Date().time,
-    val model: String = "GPT-3.5",
+    val model: Models,
     val messages: List<ChatMessage> = emptyList()
 ) {
-
+    fun toHistoryModel(): HistoryModel {
+        return HistoryModel(
+            chats = listOf(
+                HistoryItem(
+                    currModel = model,
+                    lastModified = lastModified,
+                    createdTime = createdTime,
+                    chat = messages
+                )
+            )
+        )
+    }
 }
 data class ChatMessage(
     val role: Role = Role.USER,

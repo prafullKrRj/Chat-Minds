@@ -33,6 +33,7 @@ googleGmsGoogleServices = "4.4.1"
 firebaseAuth = "23.0.0"
 lifecycleRuntimeCompose = "2.7.0"
 lifecycleRuntimeComposeAndroid = "2.8.0-rc01"
+firebaseFirestore = "25.0.0"
 
 [libraries]
 aallam-openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClientVersion" }
@@ -78,6 +79,7 @@ retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
