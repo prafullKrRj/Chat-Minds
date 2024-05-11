@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Chat Minds"
 include(":app")
- 
+include(":LLM_client")

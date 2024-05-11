@@ -34,6 +34,7 @@ firebaseAuth = "23.0.0"
 lifecycleRuntimeCompose = "2.7.0"
 lifecycleRuntimeComposeAndroid = "2.8.0-rc01"
 firebaseFirestore = "25.0.0"
+jetbrainsKotlinJvm = "1.9.0"
 
 [libraries]
 aallam-openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClientVersion" }
@@ -85,4 +86,5 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
