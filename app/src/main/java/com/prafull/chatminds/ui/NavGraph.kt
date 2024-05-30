@@ -1,15 +1,14 @@
 package com.prafull.chatminds.ui
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.prafull.chatminds.chatScreen.ui.ChatScreen
-import com.prafull.chatminds.features.history.presentation.HistoryScreen
-import com.prafull.chatminds.features.models.presentation.ModelsScreen
-import com.prafull.chatminds.features.homeScreen.presentation.HomeScreen
 import com.prafull.chatminds.chatScreen.ui.NewChatViewModel
+import com.prafull.chatminds.features.history.presentation.HistoryScreen
+import com.prafull.chatminds.features.homeScreen.presentation.HomeScreen
+import com.prafull.chatminds.features.models.presentation.ModelsScreen
 import com.prafull.chatminds.features.profile.presentation.ProfileScreen
 import com.prafull.chatminds.features.settings.presentation.SettingsScreen
 import org.koin.androidx.compose.getViewModel

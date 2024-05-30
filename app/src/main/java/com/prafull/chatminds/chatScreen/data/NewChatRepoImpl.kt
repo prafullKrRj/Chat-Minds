@@ -1,17 +1,15 @@
 package com.prafull.chatminds.chatScreen.data
 
+import com.prafull.chatminds.chatScreen.domain.NewChatRepo
 import com.prafull.chatminds.chatScreen.model.Chat
 import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
 import com.prafull.chatminds.commons.core.Resource
-import com.prafull.chatminds.chatScreen.domain.NewChatRepo
 import com.prafull.llm_client.Client
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import javax.inject.Inject
-import javax.inject.Named
 
 
 class NewChatRepoImpl(
