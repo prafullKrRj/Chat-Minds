@@ -1,60 +1,43 @@
 [versions]
-agp = "8.3.1"
+agp = "8.3.2"
 converterScalars = "2.9.0"
-coreKtxVersion = "1.13.1"
-firebaseAuthKtx = "23.0.0"
-generativeai = "0.2.2"
-hiltAndroid = "2.49"
-hiltAndroidVersion = "2.51.1"
-hiltCompiler = "1.2.0"
-hiltCompilerVersion = "2.51.1"
-hiltLifecycleViewmodel = "1.0.0-alpha03"
-hiltNavigationCompose = "1.2.0"
+koinAndroid = "3.4.0"
+koinAndroidVersion = "3.4.0"
+koinAndroidxComposeVersion = "3.4.4"
+koinAndroidxExt = "3.4.0"
+koinAndroidxCompose = "3.4.4"
+koinAndroidxNavigation = "3.2.0-beta-1"
+koinAndroidxScope = "3.4.0"
+koinAndroidxViewmodel = "3.4.0"
+koinCore = "3.4.0"
+koinTest = "3.1.2"
+koinTestJunit4 = "3.2.0-beta-1"
+koinTestJunit4Version = "3.4.0"
 kotlin = "1.9.0"
-coreKtx = "1.12.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCoroutinesCore = "1.7.2"
 kotlinxSerializationJson = "1.6.0"
-lifecycleRuntimeKtx = "2.7.0"
-activityCompose = "1.8.2"
-composeBom = "2023.08.00"
+lifecycleRuntimeKtx = "2.8.1"
+activityCompose = "1.9.0"
+composeBom = "2024.05.00"
 okhttp = "4.11.0"
-onetapcompose = "1.0.12"
-openaiClientBom = "3.6.2"
-openaiClientBomVersion = "3.7.1"
-openaiClientVersion = "3.7.1"
+openaiClient = "3.7.2"
 navigationCompose = "2.7.7"
-playServicesAuth = "21.1.1"
+playServicesAuthVersion = "21.2.0"
 retrofit = "2.9.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
-roomRuntime = "2.5.2"
 googleGmsGoogleServices = "4.4.1"
 firebaseAuth = "23.0.0"
-lifecycleRuntimeCompose = "2.7.0"
-lifecycleRuntimeComposeAndroid = "2.8.0-rc01"
-firebaseFirestore = "25.0.0"
 jetbrainsKotlinJvm = "1.9.0"
 
 [libraries]
-aallam-openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClientVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-core-ktx-v1131 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
-androidx-hilt-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
-androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
-androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterScalars" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
-firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
-generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
-hilt-android-v2511 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidVersion" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
-hilt-compiler-v2511 = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompilerVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -68,19 +51,29 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
+koin-android-v320beta1 = { module = "io.insert-koin:koin-android", version.ref = "koinAndroidVersion" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
+koin-androidx-compose-v320beta1 = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxComposeVersion" }
+koin-androidx-ext = { module = "io.insert-koin:koin-androidx-ext", version.ref = "koinAndroidxExt" }
+koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koinAndroidxNavigation" }
+koin-androidx-scope = { module = "io.insert-koin:koin-androidx-scope", version.ref = "koinAndroidxScope" }
+koin-androidx-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel", version.ref = "koinAndroidxViewmodel" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinTest" }
+koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinTestJunit4" }
+koin-test-junit4-v340 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinTestJunit4Version" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
-onetapcompose = { module = "com.github.stevdza-san:OneTapCompose", version.ref = "onetapcompose" }
-openai-client-bom = { module = "com.aallam.openai:openai-client-bom", version.ref = "openaiClientBom" }
-openai-client-bom-v371 = { module = "com.aallam.openai:openai-client-bom", version.ref = "openaiClientBomVersion" }
+
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+openai-client-v372 = { module = "com.aallam.openai:openai-client", version.ref = "openaiClient" }
+play-services-auth-v2060 = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
-androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
-androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
-firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -8,22 +8,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.prafull.chatminds.features.onBoardAuth.ui.AuthScreen
 import com.prafull.chatminds.features.subscriptions.ui.SubscriptionScreen
 import com.prafull.chatminds.ui.theme.ChatMindsTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MainActivity : ComponentActivity() {
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {

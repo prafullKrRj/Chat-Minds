@@ -7,6 +7,7 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        maven { url = uri("https://dl.bintray.com/ekito/koin") }
         mavenCentral()
         gradlePluginPortal()
     }

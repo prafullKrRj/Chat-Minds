@@ -11,15 +11,13 @@ import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
 import com.prafull.chatminds.commons.core.Resource
 import com.prafull.chatminds.chatScreen.domain.NewChatRepo
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.prafull.llm_client.Models
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class NewChatViewModel @Inject constructor(
+class NewChatViewModel(
     private val newChatRepo: NewChatRepo,
     savedStateHandle: SavedStateHandle,
 ): ViewModel() {
@@ -100,5 +98,7 @@ class NewChatViewModel @Inject constructor(
 
 data class UiState(
     val model: String = "GPT-3.5",
-    val chat: Chat = Chat()
+    val chat: Chat = Chat(
+            model = Models.OpenAI
+    )
 )

@@ -1,12 +1,10 @@
 package com.prafull.chatminds.features.history.domain
 
 import com.prafull.chatminds.chatScreen.model.ChatMessage
-import com.prafull.chatminds.commons.data.Models
-import java.sql.Time
-import java.sql.Timestamp
+import com.prafull.llm_client.Models
 
 data class HistoryModel(
-    val chats: List<HistoryItem>
+    val chats: List<HistoryItem>,
 )
 data class HistoryItem(
     val currModel: Models,

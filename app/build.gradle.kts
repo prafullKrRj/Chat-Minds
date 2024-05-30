@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
     alias(libs.plugins.googleGmsGoogleServices)
 }
 
@@ -33,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -65,7 +63,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,20 +71,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Dagger HIlt
-    implementation (libs.hilt.android.v2511)
-    kapt (libs.hilt.compiler.v2511)
-    implementation(libs.androidx.hilt.navigation.compose)
+
 
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    // room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.core.ktx.v1131)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
-    implementation(libs.androidx.room.ktx)
 
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
@@ -96,9 +84,17 @@ dependencies {
     implementation(libs.okhttp)
     implementation (libs.converter.gson)
 
-    implementation("com.google.android.gms:play-services-auth:20.6.0")
+    implementation(libs.play.services.auth.v2060)
 
-}
-kapt {
-    correctErrorTypes = true
+    implementation(project(":LLM_client"))
+
+
+
+    implementation(libs.koin.android)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    testImplementation(libs.koin.test.junit4.v340)
+    testImplementation(libs.koin.test)
 }

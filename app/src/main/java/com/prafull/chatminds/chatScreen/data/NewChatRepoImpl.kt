@@ -5,6 +5,7 @@ import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
 import com.prafull.chatminds.commons.core.Resource
 import com.prafull.chatminds.chatScreen.domain.NewChatRepo
+import com.prafull.llm_client.Client
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,22 +14,43 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-class NewChatRepoImpl @Inject constructor(
-    @Named("API_KEY") private val  apiKey: String,
-): NewChatRepo {
+class NewChatRepoImpl(
 
+): NewChatRepo {
+    private val llmClient = Client()
     override suspend fun getChatResponse(chat: Chat, message: String): Flow<Resource<ChatMessage>> {
+
         return callbackFlow {
             trySend(Resource.Loading)
-            delay(2000)
-            trySend(
-                Resource.Success(
-                    ChatMessage(
-                        message = "Hey Hey",
-                        role = Role.BOT
-                    )
+            delay(1000)
+            try {
+                val response = llmClient.getTextResponse(
+                        model = chat.model,
+                        message = message
                 )
-            )
+                if (response.isSuccess) {
+                    trySend(Resource.Success(
+                        ChatMessage(
+                            role = Role.BOT,
+                            message = response.message ?: "Error",
+                        )
+                    ))
+                } else {
+                    trySend(Resource.Error(
+                        ChatMessage(
+                            role = Role.BOT,
+                            message = response.message ?: "Error",
+                        )
+                    ))
+                }
+            } catch (e: Exception) {
+                trySend(Resource.Error(
+                    ChatMessage(
+                        role = Role.BOT,
+                        message = "${e.message}",
+                    )
+                ))
+            }
             awaitClose {  }
         }
     }
