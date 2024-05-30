@@ -8,6 +8,7 @@ class Client {
     private var currChat: List<GenericChatMessage> = emptyList()
     suspend fun getTextResponse(model: Models, message: String) : GenericChatMessage {
         currChat = currChat + GenericChatMessage(role = Role.USER, message = message)
+        println(model)
         when (model) {
             Models.Anthropic -> {
                 return GenericChatMessage(
@@ -16,17 +17,17 @@ class Client {
                 )
             }
             Models.Gemini -> {
-
                 return GenericChatMessage(
                         role = Role.BOT,
                         message = "Gemini model not supported yet"
                 )
             }
             Models.OpenAI -> {
-                val response = OpenAIClient.getChatResponse(
+               /* val response = OpenAIClient.getChatResponse(
                         currChat = currChat,
                         model = Models.OpenAI.gpt_3_5_Turbo
                 )
+                println(response)
                 if (response is Responses.Success) {
                     currChat.apply {
                         this + response.data
@@ -38,7 +39,12 @@ class Client {
                         this + response.exception
                     }
                     return response.exception
-                }
+                }*/
+                return GenericChatMessage(
+                        role = Role.BOT,
+                        message = "Gemini model not supported yet",
+                        isSuccess = true
+                )
             }
         }
         return GenericChatMessage(

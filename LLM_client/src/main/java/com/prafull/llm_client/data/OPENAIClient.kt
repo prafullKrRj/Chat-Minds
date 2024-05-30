@@ -4,6 +4,7 @@ import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.Models
 import com.aallam.openai.client.OpenAI
 import com.aallam.openai.client.OpenAIConfig
 import com.prafull.llm_client.Responses
@@ -15,7 +16,7 @@ import java.util.Properties
 
 object OpenAIClient {
     private val keys = Properties().apply {
-        load(File("local.properties").inputStream())
+        load(File("secrets.properties").inputStream())
     }
     private val openAI = OpenAI(
         config = OpenAIConfig(
@@ -36,12 +37,15 @@ object OpenAIClient {
             )
     )
     suspend fun getChatResponse(model: String, currChat: List<GenericChatMessage>): Responses<GenericChatMessage> {
+        println("Current chat: $currChat")
+        println("Model: $model")
         val chatCompletionRequest = ChatCompletionRequest(
-                model = ModelId(model),
+                model = ModelId("gpt-3.5-turbo"),
                 messages = currChat.map {
                     it.toChatMessage()
                 }
         )
+        println("Chat completion request: $chatCompletionRequest")
         try {
             val response = openAI.chatCompletion(chatCompletionRequest)
             return Responses.Success(
