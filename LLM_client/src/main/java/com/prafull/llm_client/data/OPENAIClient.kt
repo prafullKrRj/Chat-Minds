@@ -14,7 +14,7 @@ import com.prafull.llm_client.models.Role
 object OpenAIClient {
     private val openAI = OpenAI(
             config = OpenAIConfig(
-                    token = "sk-proj-Pjmt1NkfSonHEcKQhTIAT3BlbkFJD2f3HJTolIQgFQh5h7OF"
+                    token = "db"
             )
     )
     private val chatCompletionRequest = ChatCompletionRequest(
