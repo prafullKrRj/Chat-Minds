@@ -9,13 +9,18 @@ import com.aallam.openai.client.OpenAIConfig
 import com.prafull.llm_client.Responses
 import com.prafull.llm_client.models.GenericChatMessage
 import com.prafull.llm_client.models.Role
+import java.io.File
+import java.util.Properties
 
 
 object OpenAIClient {
+    private val keys = Properties().apply {
+        load(File("local.properties").inputStream())
+    }
     private val openAI = OpenAI(
-            config = OpenAIConfig(
-                    token = "db"
-            )
+        config = OpenAIConfig(
+                token = keys.getProperty("API_KEY")
+        )
     )
     private val chatCompletionRequest = ChatCompletionRequest(
             model = ModelId("gpt-3.5-turbo"),
