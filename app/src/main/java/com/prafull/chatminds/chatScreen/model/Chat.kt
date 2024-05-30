@@ -1,8 +1,8 @@
 package com.prafull.chatminds.chatScreen.model
 
+import com.prafull.chatminds.chatScreen.data.Models
 import com.prafull.chatminds.features.history.domain.HistoryItem
 import com.prafull.chatminds.features.history.domain.HistoryModel
-import com.prafull.llm_client.Models
 import java.util.Date
 
 data class Chat(

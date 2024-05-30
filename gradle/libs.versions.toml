@@ -26,6 +26,7 @@ composeBom = "2024.05.00"
 okhttp = "4.11.0"
 openaiClient = "3.7.2"
 navigationCompose = "2.7.7"
+openaiGatewayJvm = "0.2"
 playServicesAuthVersion = "21.2.0"
 retrofit = "2.9.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
@@ -69,6 +70,7 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 openai-client-v372 = { module = "com.aallam.openai:openai-client", version.ref = "openaiClient" }
+openai-gateway-jvm = { module = "com.tddworks:openai-gateway-jvm", version.ref = "openaiGatewayJvm" }
 play-services-auth-v2060 = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }

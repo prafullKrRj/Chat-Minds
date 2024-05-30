@@ -13,14 +13,15 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        //buildConfigField(type = "String", name = "OPEN_AI_API_KEY", value = project.findProperty("OPEN_AI_API_KEY").toString())
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -71,11 +72,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
-
     // viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-
 
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
@@ -86,10 +84,6 @@ dependencies {
 
     implementation(libs.play.services.auth.v2060)
 
-    implementation(project(":LLM_client"))
-
-
-
     implementation(libs.koin.android)
 
     implementation(libs.koin.core)
@@ -97,4 +91,6 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     testImplementation(libs.koin.test.junit4.v340)
     testImplementation(libs.koin.test)
+
+    implementation("com.aallam.openai:openai-client:3.7.2")
 }

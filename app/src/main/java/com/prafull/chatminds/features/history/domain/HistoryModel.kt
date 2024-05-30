@@ -1,7 +1,7 @@
 package com.prafull.chatminds.features.history.domain
 
+import com.prafull.chatminds.chatScreen.data.Models
 import com.prafull.chatminds.chatScreen.model.ChatMessage
-import com.prafull.llm_client.Models
 
 data class HistoryModel(
     val chats: List<HistoryItem>,

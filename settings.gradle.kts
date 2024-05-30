@@ -8,6 +8,9 @@ pluginManagement {
             }
         }
         maven { url = uri("https://dl.bintray.com/ekito/koin") }
+        maven {
+            url = uri( "https://kotlin.bintray.com/ktor")
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -21,4 +24,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Chat Minds"
 include(":app")
-include(":LLM_client")

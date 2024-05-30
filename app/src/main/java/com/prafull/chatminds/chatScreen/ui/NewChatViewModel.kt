@@ -6,12 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prafull.chatminds.chatScreen.data.Models
+import com.prafull.chatminds.chatScreen.domain.NewChatRepo
 import com.prafull.chatminds.chatScreen.model.Chat
 import com.prafull.chatminds.chatScreen.model.ChatMessage
 import com.prafull.chatminds.chatScreen.model.Role
 import com.prafull.chatminds.commons.core.Resource
-import com.prafull.chatminds.chatScreen.domain.NewChatRepo
-import com.prafull.llm_client.Models
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
